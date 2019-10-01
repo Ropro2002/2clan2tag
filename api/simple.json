@@ -1,0 +1,15 @@
+{
+  "id":"bsb",
+  "dbFormat": "s1",
+  "name":"The Backstreet Boys",
+  "tag":"BSB",
+  "desc":"we are cool group",
+  "disc":"invite_link",
+  "site":"none",
+  "wiki":"The_Backstreet_Boys",
+  "members":
+  [
+	"iMems",
+	"digandbuilder"
+  ]
+}

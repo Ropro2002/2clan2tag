@@ -1,0 +1,46 @@
+{
+  "name": "exampleDb",
+  "dbFormat": "a1",
+  "author": "cookiedragon",
+  "lastUpdated": 1569967368,
+  "factions":
+  [
+	{
+	  "id": "bsb",
+	  "name": "The Backstreet Boys",
+	  "tag": "BSB",
+	  "description": "The Backstreet Boys is a group founded and lead by digandbuilder and iMems after digandbuilder was banned from the Astral Order and iMems left. The name and ranks of the group are roadman themed (look in the urban dictionary if you don't know what a roadman is. The Backstreet Boys seek to have fun on 2b2t as much as possible, be it by griefing bases, building bases or hanging around at spawn to kill players and build concentration camps, which is a group tradition.",
+	  "discord": "atJzxsp",
+	  "wiki": "The_Backstreet_Boys",
+	  "members":
+	  [
+		{
+		  "name": "iMems",
+		  "rank": "bigman",
+		  "aliases":
+		  [
+			"iMems",
+			"2b2tnews"
+		  ]
+		},
+		{
+		  "name": "DigMC",
+		  "rank": "bigman",
+		  "aliases":
+		  [
+			"digandbuilder"
+		  ]
+		},
+		{
+		  "name": "cookiedragon",
+		  "rank": "mandem",
+		  "aliases":
+		  [
+			"cookiedragon234",
+			"cookiedragon_alt"
+		  ]
+		}
+	  ]
+	}
+  ]
+}
