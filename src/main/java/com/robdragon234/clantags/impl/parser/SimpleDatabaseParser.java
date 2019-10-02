@@ -6,8 +6,10 @@ import com.google.gson.JsonObject;
 import com.robdragon234.clantags.ClanTags;
 import com.robdragon234.clantags.impl.database.AdvancedDatabase;
 import com.robdragon234.clantags.impl.database.Database;
+import com.robdragon234.clantags.impl.database.SimpleDatabase;
 import com.robdragon234.clantags.impl.factions.Faction;
 import com.robdragon234.clantags.impl.members.AdvancedMember;
+import com.robdragon234.clantags.impl.members.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,6 @@ public class SimpleDatabaseParser extends DatabaseParser
 		ClanTags.logger.info("Parsing database '" + name + "'");
 		
 		String dbFormat = getAsString(jsonObject, "dbFormat");
-		String author = getAsString(jsonObject, "author");
-		long lastUpdated = getAsLong(jsonObject, "lastUpdated");
 		
 		List<Faction> factions = new ArrayList<>();
 		
@@ -45,32 +45,18 @@ public class SimpleDatabaseParser extends DatabaseParser
 			String discord = getAsString(factionObj, "discord");
 			String wiki = getAsString(factionObj, "wiki");
 			
-			List<AdvancedMember> members = new ArrayList<>();
+			List<Member> members = new ArrayList<>();
 			
 			JsonArray membersJson = factionObj.get("members").getAsJsonArray();
 			
 			for(JsonElement memberElement : membersJson)
 			{
-				JsonObject memberObj = memberElement.getAsJsonObject();
-				
-				String memberName = getAsString(memberObj, "name");
-				String rank = getAsString(memberObj, "rank");
-				
-				List<String> aliases = new ArrayList<>();
-				
-				JsonArray aliasesJson = memberObj.get("aliases").getAsJsonArray();
-				
-				for(JsonElement aliasElement : aliasesJson)
-				{
-					aliases.add(aliasElement.getAsString());
-				}
-				
-				members.add(new AdvancedMember(memberName, rank, aliases));
+				members.add(new Member(memberElement.getAsString()));
 			}
 			
 			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
 		}
 		
-		return new AdvancedDatabase(name, dbFormat, author, lastUpdated, factions);
+		return new SimpleDatabase(name, dbFormat, factions);
 	}
 }
