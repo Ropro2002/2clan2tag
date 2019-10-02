@@ -1,6 +1,6 @@
 package com.robdragon234.clantags.impl.database;
 
-import com.clantags.impl.factions.Faction;
+import com.robdragon234.clantags.impl.factions.Faction;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashMap;

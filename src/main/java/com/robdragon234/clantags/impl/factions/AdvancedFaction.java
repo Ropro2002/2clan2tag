@@ -1,6 +1,6 @@
 package com.robdragon234.clantags.impl.factions;
 
-import com.clantags.impl.members.Member;
+import com.robdragon234.clantags.impl.members.Member;
 
 import java.util.List;
 
