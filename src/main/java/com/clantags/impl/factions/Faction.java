@@ -1,5 +1,8 @@
 package com.clantags.impl.factions;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.ITextComponent;
+
 import java.util.List;
 
 public class Faction
@@ -21,5 +24,10 @@ public class Faction
 		this.discord = discord;
 		this.wiki = wiki;
 		this.members = members;
+	}
+	
+	public ITextComponent getFormattedPlayerName(EntityPlayer player)
+	{
+		return player.getDisplayName().appendText(" [" + tag + "]");
 	}
 }
