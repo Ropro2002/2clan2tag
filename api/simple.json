@@ -1,5 +1,5 @@
 {
-  "dbName": "Example Simple Database",
+  "name": "Example Simple Database",
   "dbFormat": "s1",
   "factions":
   [
