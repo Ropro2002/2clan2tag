@@ -1,6 +1,7 @@
-package com.clantags.impl;
+package com.robdragon234.clantags.impl;
 
-import com.clantags.ClanTags;
+import com.robdragon234.clantags.ClanTags;
+import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.FMLLog;
 
 import java.io.BufferedReader;
@@ -18,7 +19,6 @@ public class ClanTagsImpl
 	}
 	
 	private HashMap<String, String> factionMembers = null;
-	
 	/**
 	 * Fetches users from the database
 	 * @throws IOException If an error occurs while loading

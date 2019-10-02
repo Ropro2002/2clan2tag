@@ -1,4 +1,4 @@
-package com.clantags.impl.database;
+package com.robdragon234.clantags.impl.database;
 
 import com.clantags.impl.factions.Faction;
 import com.clantags.impl.members.Member;

@@ -1,4 +1,4 @@
-package com.clantags.impl.members;
+package com.robdragon234.clantags.impl.members;
 
 public class Member
 {
