@@ -1,4 +1,4 @@
-package com.robdragon234.clantags.impl.parser;
+package com.robdragon234.clantags.impl.throwables;
 
 public class InvalidDatabaseException extends RuntimeException
 {

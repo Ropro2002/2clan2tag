@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.robdragon234.clantags.ClanTags;
 import com.robdragon234.clantags.impl.database.Database;
+import com.robdragon234.clantags.impl.throwables.InvalidDatabaseException;
 
 import java.util.Objects;
 

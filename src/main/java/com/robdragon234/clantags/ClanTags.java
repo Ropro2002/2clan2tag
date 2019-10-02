@@ -47,7 +47,8 @@ public class ClanTags
 			clanTagsImpl = new ClanTagsImpl();
 			clanTagsImpl.fetchDatabases(
 				new URL[]{
-					new URL("https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/advanced.json?token=AM26DGZZ2CSMKF2HYKEEO4C5TY7OG")
+					new URL("https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/advanced.json?token=AM26DGZZ2CSMKF2HYKEEO4C5TY7OG"),
+					new URL("https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/simple.json?token=AM26DG77NY6TSTP4T2C5HE25TZIXQ")
 				}
 			);
 		}
