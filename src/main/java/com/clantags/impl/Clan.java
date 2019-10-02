@@ -1,3 +1,5 @@
+package com.clantags.impl;
+
 public class Clan
 {
 	public String name;
