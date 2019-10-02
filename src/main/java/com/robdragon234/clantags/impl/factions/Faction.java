@@ -14,9 +14,17 @@ public class Faction
 	public String desc;
 	public String discord;
 	public String wiki;
-	public List<Member> members;
+	public List<? extends Member> members;
 	
-	public Faction(String id, String name, String tag, String desc, String discord, String wiki, List<Member> members)
+	public Faction(
+		String id,
+		String name,
+		String tag,
+		String desc,
+		String discord,
+		String wiki,
+		List<? extends Member> members
+	)
 	{
 		this.id = id;
 		this.name = name;
