@@ -61,6 +61,7 @@ public class ClanTagsImpl
 	{
 		for(Database database : databases)
 		{
+			System.out.println("---------------");
 			System.out.println(database.dbName);
 			System.out.println(database.dbFormat);
 			for(Faction faction : database.factions)
