@@ -1,19 +1,16 @@
 [
-  {
-    "modid": "clantags",
-    "name": "Clantags",
-    "description": "A",
-    "version": "${version}",
-    "mcversion": "${mcversion}",
-    "url": "",
-    "updateUrl": "",
-    "authorList": [
-      "Robeart",
-      "Cookiedragon234"
-    ],
-    "credits": "",
-    "logoFile": "",
-    "screenshots": [],
-    "dependencies": []
-  }
+    {
+        "modid": "clantags",
+        "name": "Clantags",
+        "description": "A mod made for 2b2t to show in what clans/groups players are",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["Robeart", "Cookiedragon234"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
 ]

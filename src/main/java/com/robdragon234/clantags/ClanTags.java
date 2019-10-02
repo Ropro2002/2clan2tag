@@ -1,18 +1,12 @@
 package com.robdragon234.clantags;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Logger;
 
-@Mod(
-        modid = ClanTags.MOD_ID,
-        name = ClanTags.MOD_NAME,
-        version = ClanTags.VERSION
-)
+@Mod(modid = ClanTags.MOD_ID, name = ClanTags.MOD_NAME, version = ClanTags.VERSION)
 public class ClanTags {
 
     public static final String MOD_ID = "clantags";
@@ -24,9 +18,9 @@ public class ClanTags {
     @Mod.Instance(MOD_ID)
     public static ClanTags INSTANCE;
 
-
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {
+        System.out.println(event.getModMetadata());
         logger = event.getModLog();
     }
 
@@ -37,6 +31,6 @@ public class ClanTags {
 
     @Mod.EventHandler
     public void postinit(FMLPostInitializationEvent event) {
-
     }
+
 }
