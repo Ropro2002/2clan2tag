@@ -7,7 +7,5 @@ public abstract class Database
 	{
 	}
 	
-	public static Clan getPlayerClan(EntityPlayer player)
-	{
-	}
+	public abstract Clan getPlayerClan(EntityPlayer player);
 }
