@@ -20,21 +20,6 @@ public class SimpleDatabaseParser extends DatabaseParser
 	@Override
 	public Database parse()
 	{
-		String name = getAsString(jsonObject, "name");
-		String dbFormat = getAsString(jsonObject, "dbFormat");
-		long lastUpdated = getAsLong(jsonObject, "lastUpdated");
-		
-		List<Faction> factions = new ArrayList<>();
-		
-		JsonArray factionsJson = jsonObject.get("factions").getAsJsonArray();
-		
-		for(JsonElement factionElement : factionsJson)
-		{
-			JsonObject factionObj = factionElement.getAsJsonObject();
-			
-			String id = getAsString(factionObj, "id");
-			String factionName = getAsString(factionObj, "name");
-			String tag = getAsString(factionObj, "tag");
-		}
+		return null;
 	}
 }
