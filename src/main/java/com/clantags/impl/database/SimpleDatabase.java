@@ -1,6 +1,7 @@
 package com.clantags.impl.database;
 
 import com.clantags.impl.factions.Faction;
+import com.clantags.impl.members.Member;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashMap;
@@ -29,16 +30,19 @@ public class SimpleDatabase extends Database
 		
 		for(Faction faction : factions)
 		{
-			for(String member : faction.members)
+			for(Member member : faction.members)
 			{
-				if(member.equalsIgnoreCase(player.getName()))
+				for(String alias : member.aliases)
 				{
-					// The player is a member of this clan
-					
-					// Add them to the cache
-					playerCache.put(member, faction);
-					
-					return faction;
+					if(alias.equalsIgnoreCase(player.getName()))
+					{
+						// The player is a member of this clan
+						
+						// Add them to the cache
+						playerCache.put(alias, faction);
+						
+						return faction;
+					}
 				}
 			}
 		}

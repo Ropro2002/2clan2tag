@@ -1,5 +1,6 @@
 package com.clantags.impl.factions;
 
+import com.clantags.impl.members.Member;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ITextComponent;
 
@@ -13,9 +14,9 @@ public class Faction
 	public String desc;
 	public String discord;
 	public String wiki;
-	public List<String> members;
+	public List<Member> members;
 	
-	public Faction(String id, String name, String tag, String desc, String discord, String wiki, List<String> members)
+	public Faction(String id, String name, String tag, String desc, String discord, String wiki, List<Member> members)
 	{
 		this.id = id;
 		this.name = name;
