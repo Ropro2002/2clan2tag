@@ -1,4 +1,5 @@
 {
+  "dbName": "Example Simple Database",
   "dbFormat": "s1",
   "factions":
   [
@@ -7,8 +8,7 @@
 	  "name":"The Backstreet Boys",
 	  "tag":"BSB",
 	  "desc":"we are cool group",
-	  "disc":"atJzxsp",
-	  "site":"none",
+	  "discord":"atJzxsp",
 	  "wiki":"The_Backstreet_Boys",
 	  "members":
 	  [

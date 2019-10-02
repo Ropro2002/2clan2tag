@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class SimpleDatabase extends Database
 {
-	public SimpleDatabase(String dbName, String dbFormat)
+	public SimpleDatabase(String dbName, String dbFormat, )
 	{
 	
 	}
