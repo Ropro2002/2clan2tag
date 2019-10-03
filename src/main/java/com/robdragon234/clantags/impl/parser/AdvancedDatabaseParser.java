@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robdragon234.clantags.ClanTags;
-import com.robdragon234.clantags.impl.database.AdvancedDatabase;
 import com.robdragon234.clantags.impl.database.Database;
 import com.robdragon234.clantags.impl.factions.Faction;
 import com.robdragon234.clantags.impl.members.AdvancedMember;
@@ -71,6 +70,6 @@ public class AdvancedDatabaseParser extends DatabaseParser
 			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
 		}
 		
-		return new AdvancedDatabase(name, dbFormat, author, lastUpdated, factions);
+		return new Database(name, dbFormat, author, lastUpdated, factions);
 	}
 }

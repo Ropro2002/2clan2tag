@@ -4,11 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robdragon234.clantags.ClanTags;
-import com.robdragon234.clantags.impl.database.AdvancedDatabase;
 import com.robdragon234.clantags.impl.database.Database;
-import com.robdragon234.clantags.impl.database.SimpleDatabase;
 import com.robdragon234.clantags.impl.factions.Faction;
-import com.robdragon234.clantags.impl.members.AdvancedMember;
 import com.robdragon234.clantags.impl.members.Member;
 
 import java.util.ArrayList;
@@ -57,6 +54,6 @@ public class SimpleDatabaseParser extends DatabaseParser
 			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
 		}
 		
-		return new SimpleDatabase(name, dbFormat, factions);
+		return new Database(name, dbFormat, factions);
 	}
 }
