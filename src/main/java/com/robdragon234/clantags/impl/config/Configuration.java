@@ -13,18 +13,22 @@ import java.util.Map;
 @Config(modid = ClanTags.MOD_ID)
 @Config.LangKey("clantags.config.title")
 public class Configuration {
-
+    
+    @Config.RequiresMcRestart
+    @Config.Comment({"Databases", "The list of databases from which to retrieve info"})
+    public static String[] databases = new String[]{"https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/advanced.json"};
+    
     @Config.Comment({"Mute users with no group", "This will not show chat messages of anyone that is not registered in any of your loaded databases"})
-    public static boolean  muteNoRank = false;
+    public static boolean muteNoRank = false;
     
     @Config.Comment({"Mute users that aren't in your group", "This will not show chat messages of anyone that is not in your group"})
-    public static boolean  muteOtherGroups = false;
+    public static boolean muteOtherGroups = false;
 
     @Config.Comment({"Hide users with no group", "This will not show the username of anyone that is not registered in any of your loaded databases on the tablist"})
-    public static boolean  hideNoRank = false;
+    public static boolean hideNoRank = false;
     
     @Config.Comment({"Hide users that aren't in your group", "This will not show the username of anyone that is not in your group on the tablist"})
-    public static boolean  hideOtherGroups = false;
+    public static boolean hideOtherGroups = false;
 
     @Mod.EventBusSubscriber(modid = ClanTags.MOD_ID)
     private static class EventHandler {
