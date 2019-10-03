@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Mod(
@@ -67,6 +68,7 @@ public class ClanTags
 						return null;
 					}
 				)
+				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
 			
 			clanTagsImpl.fetchDatabases(databases);
