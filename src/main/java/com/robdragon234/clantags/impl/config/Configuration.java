@@ -14,8 +14,8 @@ import java.util.Map;
 @Config.LangKey("clantags.config.title")
 public class Configuration {
     
-    @Config.RequiresMcRestart
     @Config.Comment({"Databases", "The list of databases from which to retrieve info"})
+    @Config.RequiresMcRestart
     public static String[] databases = new String[]{"https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/advanced.json"};
     
     @Config.Comment({"Mute users with no group", "This will not show chat messages of anyone that is not registered in any of your loaded databases"})
