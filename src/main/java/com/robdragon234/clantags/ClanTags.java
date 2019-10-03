@@ -2,6 +2,7 @@ package com.robdragon234.clantags;
 
 import com.google.common.base.Throwables;
 import com.robdragon234.clantags.impl.ClanTagsImpl;
+import com.robdragon234.clantags.impl.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -10,8 +11,12 @@ import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.Frame;
+import java.awt.BorderLayout;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod(
 	modid = ClanTags.MOD_ID,
@@ -49,12 +54,22 @@ public class ClanTags
 		try
 		{
 			clanTagsImpl = new ClanTagsImpl();
-			clanTagsImpl.fetchDatabases(
-				new URL[]{
-					new URL("https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/advanced.json?token=AM26DGZZ2CSMKF2HYKEEO4C5TY7OG"),
-					new URL("https://raw.githubusercontent.com/Ropro2002/2clan2tag/master/api/simple.json?token=AM26DG77NY6TSTP4T2C5HE25TZIXQ")
-				}
-			);
+			
+			// Array of string to a list of URLs
+			List<URL> databases = Arrays.stream(Configuration.databases)
+				.map(
+					str ->
+					{
+						try
+						{
+							return new URL(str);
+						} catch(Exception ignored){}
+						return null;
+					}
+				)
+				.collect(Collectors.toList());
+			
+			clanTagsImpl.fetchDatabases(databases);
 		}
 		catch(Exception e)
 		{

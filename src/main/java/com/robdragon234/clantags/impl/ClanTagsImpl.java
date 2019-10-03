@@ -30,7 +30,7 @@ public class ClanTagsImpl
 	 * Fetches users from the database
 	 * @throws IOException If an error occurs while loading
 	 */
-	public void fetchDatabases(URL[] dbLocs) throws IOException
+	public void fetchDatabases(List<URL> dbLocs) throws IOException
 	{
 		for(URL dbLoc : dbLocs)
 		{
