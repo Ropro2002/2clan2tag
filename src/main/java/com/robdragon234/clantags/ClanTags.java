@@ -3,10 +3,14 @@ package com.robdragon234.clantags;
 import com.google.common.base.Throwables;
 import com.robdragon234.clantags.impl.ClanTagsImpl;
 import com.robdragon234.clantags.impl.config.Configuration;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
@@ -47,6 +51,7 @@ public class ClanTags
 	public void init(FMLInitializationEvent event)
 	{
 		logger.info("Initialising 2clan2tags...");
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	@Mod.EventHandler
@@ -77,6 +82,15 @@ public class ClanTags
 		{
 			displayErrorMessage(e);
 			e.printStackTrace();
+		}
+	}
+	
+	@SubscribeEvent
+	public void onEntityAddedToWorld(EntityJoinWorldEvent event)
+	{
+		if(event.getEntity() instanceof EntityPlayer)
+		{
+			clanTagsImpl.setNameTag((EntityPlayer)event.getEntity());
 		}
 	}
 	
