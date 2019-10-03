@@ -16,9 +16,15 @@ public class Configuration {
 
     @Config.Comment({"Mute users with no group", "This will not show chat messages of anyone that is not registered in any of your loaded databases"})
     public static boolean  muteNoRank = false;
+    
+    @Config.Comment({"Mute users that aren't in your group", "This will not show chat messages of anyone that is not in your group"})
+    public static boolean  muteOtherGroups = false;
 
     @Config.Comment({"Hide users with no group", "This will not show the username of anyone that is not registered in any of your loaded databases on the tablist"})
     public static boolean  hideNoRank = false;
+    
+    @Config.Comment({"Hide users that aren't in your group", "This will not show the username of anyone that is not in your group on the tablist"})
+    public static boolean  hideOtherGroups = false;
 
     @Mod.EventBusSubscriber(modid = ClanTags.MOD_ID)
     private static class EventHandler {
