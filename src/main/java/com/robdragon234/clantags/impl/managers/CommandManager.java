@@ -3,6 +3,7 @@ package com.robdragon234.clantags.impl.managers;
 import com.robdragon234.clantags.api.command.Command;
 import com.robdragon234.clantags.api.util.ChatUtil;
 import com.robdragon234.clantags.impl.command.InfoCommand;
+import com.robdragon234.clantags.impl.command.RankCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class CommandManager {
 
     public CommandManager() {
         commandList.add(new InfoCommand());
+        commandList.add(new RankCommand());
     }
 
     public void executeCommand(String input) {
