@@ -13,6 +13,9 @@ import java.util.Map;
 @Config(modid = ClanTags.MOD_ID)
 @Config.LangKey("clantags.config.title")
 public class Configuration {
+
+    @Config.Comment({"Mute users with no group", "This will not show chat messages of anyone that is not registered in any of your loaded databases"})
+    public static String prefix = "!";
     
     @Config.Comment({"Databases", "The list of databases from which to retrieve info"})
     @Config.RequiresMcRestart

@@ -1,4 +1,4 @@
-package com.robdragon234.clantags.impl;
+package com.robdragon234.clantags.impl.managers;
 
 import com.robdragon234.clantags.ClanTags;
 import com.robdragon234.clantags.impl.database.Database;
@@ -6,7 +6,6 @@ import com.robdragon234.clantags.impl.factions.Faction;
 import com.robdragon234.clantags.impl.members.Member;
 import com.robdragon234.clantags.impl.parser.DatabaseParser;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nullable;
 import java.io.BufferedReader;
@@ -18,18 +17,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class ClanTagsImpl {
+public class DatabaseManager {
 
-    public List<Database> databases = new ArrayList<>();
-    public HashMap<EntityPlayer, Faction> factionCache = new HashMap<>();
-    public ClanTagsImpl() {
+    private List<Database> databases = new ArrayList<>();
+    private HashMap<EntityPlayer, Faction> factionCache = new HashMap<>();
+
+    public DatabaseManager(List<URL> dbLocs) throws IOException {
+        fetchDatabases(dbLocs);
     }
 
-    /**
-     * Fetches users from the database
-     *
-     * @throws IOException If an error occurs while loading
-     */
     public void fetchDatabases(List<URL> dbLocs) throws IOException {
         for (URL dbLoc : dbLocs) {
             ClanTags.logger.info("Fetching users from database '" + dbLoc + "'");
@@ -54,13 +50,6 @@ public class ClanTagsImpl {
         debugDatabases();
     }
 
-    public void setNameTag(EntityPlayer player) {
-        Faction faction = getFactionByName(player);
-        if (faction != null) {
-            player.addPrefix(new TextComponentString("[" + faction.tag + "]"));
-        }
-    }
-
     /**
      * Returns the {@link Faction} that an {@link EntityPlayer} belongs to
      *
@@ -68,12 +57,11 @@ public class ClanTagsImpl {
      * @return the faction the player belongs to
      */
     @Nullable
-    public Faction getFactionByName(EntityPlayer player) {
+    public Faction getFactionOfPlayer(EntityPlayer player) {
         // Try retrieving from cache first
         try {
             return Objects.requireNonNull(factionCache.get(player));
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) { }
 
         for (Database database : databases) {
             for (Faction faction : database.factions) {

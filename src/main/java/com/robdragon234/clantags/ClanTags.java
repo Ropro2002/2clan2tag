@@ -3,6 +3,10 @@ package com.robdragon234.clantags;
 import com.google.common.base.Throwables;
 import com.robdragon234.clantags.impl.ClanTagsImpl;
 import com.robdragon234.clantags.impl.config.Configuration;
+import com.robdragon234.clantags.impl.database.Database;
+import com.robdragon234.clantags.impl.managers.ChatManager;
+import com.robdragon234.clantags.impl.managers.CommandManager;
+import com.robdragon234.clantags.impl.managers.DatabaseManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -32,14 +36,16 @@ public class ClanTags
 {
 	public static final String MOD_ID = "clantags";
 	public static final String MOD_NAME = "Clantags";
-	public static final String VERSION = "2019.2-1.3.1";
+	public static final String VERSION = "0.1-SNAPSHOT";
 	
 	public static Logger logger;
-	protected static ClanTagsImpl clanTagsImpl;
 	
 	@Mod.Instance(MOD_ID)
 	public static ClanTags INSTANCE;
-	
+
+	private CommandManager commandManager;
+	private DatabaseManager databaseManager;
+	private ChatManager chatManager;
 	
 	@Mod.EventHandler
 	public void preinit(FMLPreInitializationEvent event)
@@ -55,12 +61,8 @@ public class ClanTags
 	}
 	
 	@Mod.EventHandler
-	public void postinit(FMLPostInitializationEvent event)
-	{
-		try
-		{
-			clanTagsImpl = new ClanTagsImpl();
-			
+	public void postinit(FMLPostInitializationEvent event) {
+		try {
 			// Array of string to a list of URLs
 			List<URL> databases = Arrays.stream(Configuration.databases)
 				.map(
@@ -75,25 +77,39 @@ public class ClanTags
 				)
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-			
-			clanTagsImpl.fetchDatabases(databases);
+
+			databaseManager = new DatabaseManager(databases);
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			displayErrorMessage(e);
 			e.printStackTrace();
 		}
+		commandManager = new CommandManager();
+		chatManager = new ChatManager();
+
 	}
 	
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public void onEntityAddedToWorld(EntityJoinWorldEvent event)
 	{
 		if(event.getEntity() instanceof EntityPlayer)
 		{
 			clanTagsImpl.setNameTag((EntityPlayer)event.getEntity());
 		}
+	}*/
+
+	public CommandManager getCommandManager() {
+		return commandManager;
 	}
-	
+
+	public ChatManager getChatManager() {
+		return chatManager;
+	}
+
+	public DatabaseManager getDatabaseManager() {
+		return databaseManager;
+	}
+
 	/**
 	 * Displays an error message in a popup box
 	 * @param t the error encountered
