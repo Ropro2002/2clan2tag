@@ -4,7 +4,6 @@ import com.robdragon234.clantags.api.command.Command;
 import com.robdragon234.clantags.api.util.ChatUtil;
 import com.robdragon234.clantags.impl.command.InfoCommand;
 import com.robdragon234.clantags.impl.command.RankCommand;
-import com.robdragon234.clantags.impl.config.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class CommandManager {
 
     private List<Command> commandList = new ArrayList<>();
-    private String prefix = Configuration.prefix;
+    private String prefix = "!";
 
     public CommandManager() {
         commandList.add(new InfoCommand());

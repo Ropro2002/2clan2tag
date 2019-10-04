@@ -5,7 +5,6 @@ import com.robdragon234.clantags.impl.config.Configuration;
 import com.robdragon234.clantags.impl.event.EventListener;
 import com.robdragon234.clantags.impl.managers.CommandManager;
 import com.robdragon234.clantags.impl.managers.DatabaseManager;
-import com.robdragon234.clantags.impl.members.Member;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -41,7 +40,6 @@ public class ClanTags
 
 	private CommandManager commandManager;
 	private DatabaseManager databaseManager;
-	private Member player;
 	
 	@Mod.EventHandler
 	public void preinit(FMLPreInitializationEvent event)
@@ -99,14 +97,6 @@ public class ClanTags
 
 	public DatabaseManager getDatabaseManager() {
 		return databaseManager;
-	}
-
-	public Member getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Member player) {
-		this.player = player;
 	}
 
 	/**
