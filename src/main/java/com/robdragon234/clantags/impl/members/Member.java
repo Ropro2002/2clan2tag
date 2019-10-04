@@ -16,7 +16,7 @@ public class Member
 	{
 		this.name = username;
 		this.faction = faction;
-		this.aliases = new ArrayList<>();
+		this.aliases = Collections.singletonList(username); // <-- IMMUTABLE LIST! Will throw exception if added to
 	}
 
 	public Member(String username, Faction faction, List<String> aliases)
