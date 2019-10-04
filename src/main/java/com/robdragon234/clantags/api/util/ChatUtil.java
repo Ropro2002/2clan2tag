@@ -6,12 +6,8 @@ import net.minecraft.util.text.TextComponentString;
 
 public class ChatUtil {
 
-    public static void component(ITextComponent component) {
-        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString("[2c2t]").appendSibling(component));
-    }
-
     public static void message(String message) {
-        component(new TextComponentString(message));
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(message));
     }
 
     public static void warning(String message) {
@@ -19,7 +15,7 @@ public class ChatUtil {
     }
 
     public static void error(String message) {
-        message("\u00a7c[\u00a74\u00a7lERROR\u00a7c]\u00a7r " + message);
+        message("\u00a7c[\u00a74ERROR\u00a7c]\u00a7r " + message);
     }
 
 

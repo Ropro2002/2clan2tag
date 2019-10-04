@@ -5,7 +5,6 @@ import com.robdragon234.clantags.impl.database.Database;
 import com.robdragon234.clantags.impl.factions.Faction;
 import com.robdragon234.clantags.impl.members.Member;
 import com.robdragon234.clantags.impl.parser.DatabaseParser;
-import net.minecraft.entity.player.EntityPlayer;
 
 import javax.annotation.Nullable;
 import java.io.BufferedReader;
@@ -20,7 +19,7 @@ import java.util.Objects;
 public class DatabaseManager {
 
     private List<Database> databases = new ArrayList<>();
-    private HashMap<EntityPlayer, Faction> factionCache = new HashMap<>();
+    private HashMap<String, Member> memberCache = new HashMap<>();
 
     public DatabaseManager(List<URL> dbLocs) throws IOException {
         fetchDatabases(dbLocs);
@@ -51,32 +50,31 @@ public class DatabaseManager {
     }
 
     /**
-     * Returns the {@link Faction} that an {@link EntityPlayer} belongs to
+     * Returns the {@link Member} that an {@link String} belongs to
      *
-     * @param player the player
+     * @param name of the player
      * @return the faction the player belongs to
      */
     @Nullable
-    public Faction getFactionOfPlayer(EntityPlayer player) {
+    public Member getMember(String name) {
         // Try retrieving from cache first
         try {
-            return Objects.requireNonNull(factionCache.get(player));
-        } catch (Exception ignored) { }
-
+            return Objects.requireNonNull(memberCache.get(name));
+        } catch (Exception ignored) {
+        }
         for (Database database : databases) {
             for (Faction faction : database.factions) {
                 for (Member member : faction.members) {
+                    if (member.name.equalsIgnoreCase(name)) return member;
                     for (String alias : member.aliases) {
-                        if (alias.equalsIgnoreCase(player.getName())) {
-                            return faction;
-                        }
+                        if (alias.equalsIgnoreCase(name)) return member;
                     }
                 }
             }
         }
-
         return null;
     }
+
 
     /**
      * Returns the {@link Faction} that an {@link String} belongs to

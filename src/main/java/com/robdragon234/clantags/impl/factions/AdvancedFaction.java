@@ -12,10 +12,9 @@ public class AdvancedFaction extends Faction
 		String tag,
 		String desc,
 		String discord,
-		String wiki,
-		List<Member> members
+		String wiki
 	)
 	{
-		super(id, name, tag, desc, discord, wiki, members);
+		super(id, name, tag, desc, discord, wiki);
 	}
 }

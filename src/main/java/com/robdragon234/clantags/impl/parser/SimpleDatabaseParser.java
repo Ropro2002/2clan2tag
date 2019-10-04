@@ -41,17 +41,17 @@ public class SimpleDatabaseParser extends DatabaseParser
 			String description = getAsString(factionObj, "description");
 			String discord = getAsString(factionObj, "discord");
 			String wiki = getAsString(factionObj, "wiki");
-			
+
+			Faction faction = new Faction(id, factionName, tag, description, discord, wiki);
 			List<Member> members = new ArrayList<>();
 			
 			JsonArray membersJson = factionObj.get("members").getAsJsonArray();
 			
 			for(JsonElement memberElement : membersJson)
 			{
-				members.add(new Member(memberElement.getAsString()));
+				faction.addMember(new Member(memberElement.getAsString(), faction));
 			}
-			
-			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
+			factions.add(faction);
 		}
 		
 		return new Database(name, dbFormat, factions);
