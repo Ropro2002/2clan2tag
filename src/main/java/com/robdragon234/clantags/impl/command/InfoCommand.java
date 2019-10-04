@@ -3,8 +3,6 @@ package com.robdragon234.clantags.impl.command;
 import com.robdragon234.clantags.ClanTags;
 import com.robdragon234.clantags.api.command.Command;
 import com.robdragon234.clantags.api.util.ChatUtil;
-import com.robdragon234.clantags.impl.ClanTagsImpl;
-import com.robdragon234.clantags.impl.config.Configuration;
 import com.robdragon234.clantags.impl.factions.Faction;
 
 public class InfoCommand extends Command {

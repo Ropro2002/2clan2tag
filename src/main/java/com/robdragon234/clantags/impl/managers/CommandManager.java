@@ -2,6 +2,7 @@ package com.robdragon234.clantags.impl.managers;
 
 import com.robdragon234.clantags.api.command.Command;
 import com.robdragon234.clantags.api.util.ChatUtil;
+import com.robdragon234.clantags.impl.command.InfoCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.List;
 public class CommandManager {
 
     private List<Command> commandList = new ArrayList<>();
-    private String prefix = ".";
+    private String prefix = "!";
 
     public CommandManager() {
+        commandList.add(new InfoCommand());
     }
 
     public void executeCommand(String input) {

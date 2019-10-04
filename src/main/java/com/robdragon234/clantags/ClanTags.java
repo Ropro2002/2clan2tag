@@ -1,20 +1,15 @@
 package com.robdragon234.clantags;
 
 import com.google.common.base.Throwables;
-import com.robdragon234.clantags.impl.ClanTagsImpl;
 import com.robdragon234.clantags.impl.config.Configuration;
-import com.robdragon234.clantags.impl.database.Database;
-import com.robdragon234.clantags.impl.managers.ChatManager;
+import com.robdragon234.clantags.impl.event.EventListener;
 import com.robdragon234.clantags.impl.managers.CommandManager;
 import com.robdragon234.clantags.impl.managers.DatabaseManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
@@ -45,7 +40,6 @@ public class ClanTags
 
 	private CommandManager commandManager;
 	private DatabaseManager databaseManager;
-	private ChatManager chatManager;
 	
 	@Mod.EventHandler
 	public void preinit(FMLPreInitializationEvent event)
@@ -57,11 +51,11 @@ public class ClanTags
 	public void init(FMLInitializationEvent event)
 	{
 		logger.info("Initialising 2clan2tags...");
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	@Mod.EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new EventListener());
 		try {
 			// Array of string to a list of URLs
 			List<URL> databases = Arrays.stream(Configuration.databases)
@@ -85,7 +79,6 @@ public class ClanTags
 			e.printStackTrace();
 		}
 		commandManager = new CommandManager();
-		chatManager = new ChatManager();
 
 	}
 	
@@ -100,10 +93,6 @@ public class ClanTags
 
 	public CommandManager getCommandManager() {
 		return commandManager;
-	}
-
-	public ChatManager getChatManager() {
-		return chatManager;
 	}
 
 	public DatabaseManager getDatabaseManager() {
