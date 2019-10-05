@@ -12,16 +12,13 @@ import com.robdragon234.clantags.impl.members.Member;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdvancedDatabaseParser extends DatabaseParser
-{
-	AdvancedDatabaseParser(JsonObject jsonObject)
-	{
+public class AdvancedDatabaseParser extends DatabaseParser {
+	AdvancedDatabaseParser(JsonObject jsonObject) {
 		super(jsonObject);
 	}
 	
 	@Override
-	public Database parse()
-	{
+	public Database parse() {
 		String name = getAsString(jsonObject, "name");
 		
 		ClanTags.logger.info("Parsing database '" + name + "'");
@@ -34,8 +31,7 @@ public class AdvancedDatabaseParser extends DatabaseParser
 		
 		JsonArray factionsJson = jsonObject.get("factions").getAsJsonArray();
 		
-		for(JsonElement factionElement : factionsJson)
-		{
+		for (JsonElement factionElement : factionsJson) {
 			JsonObject factionObj = factionElement.getAsJsonObject();
 			
 			String id = getAsString(factionObj, "id");
@@ -44,16 +40,15 @@ public class AdvancedDatabaseParser extends DatabaseParser
 			String description = getAsString(factionObj, "description");
 			String discord = getAsString(factionObj, "discord");
 			String wiki = getAsString(factionObj, "wiki");
-
+			
 			Faction faction = new Faction(id, factionName, tag, description, discord, wiki);
 			List<Member> members = new ArrayList<>();
 			
 			JsonArray membersJson = factionObj.get("members").getAsJsonArray();
 			
-			for(JsonElement memberElement : membersJson)
-			{
+			for (JsonElement memberElement : membersJson) {
 				JsonObject memberObj = memberElement.getAsJsonObject();
-
+				
 				String memberName = getAsString(memberObj, "name");
 				String rank = getAsString(memberObj, "rank");
 				
@@ -61,8 +56,7 @@ public class AdvancedDatabaseParser extends DatabaseParser
 				
 				JsonArray aliasesJson = memberObj.get("aliases").getAsJsonArray();
 				
-				for(JsonElement aliasElement : aliasesJson)
-				{
+				for (JsonElement aliasElement : aliasesJson) {
 					aliases.add(aliasElement.getAsString());
 				}
 				
