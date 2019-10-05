@@ -24,8 +24,11 @@ public class EventListener {
 			if (event.getEntity() == Minecraft.getMinecraft().player) ClanTags.INSTANCE.setPlayer(member);
 			
 			if (member != null) {
-				((EntityPlayer) event.getEntity()).addPrefix(new TextComponentString("[" + member.faction.getTag() + "]"));
+				EntityPlayer player = (EntityPlayer)event.getEntity();
+				String tag = "[" + member.faction.getTag() + "]";
 				
+				player.addPrefix(new TextComponentString(tag));
+				player.setCustomNameTag(player.getDisplayNameString() + " " + tag);
 			}
 		}
 	}
