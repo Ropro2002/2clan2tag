@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Faction {
-	public String id;
-	public String name;
-	public String tag;
-	public String desc;
-	public String discord;
-	public String wiki;
-	public List<Member> members;
+	private String id;
+	private String name;
+	private String tag;
+	private String desc;
+	private String discord;
+	private String wiki;
+	private List<Member> members;
 	
 	public Faction(
 			String id,
@@ -39,5 +39,33 @@ public class Faction {
 	
 	public ITextComponent getFormattedPlayerName(EntityPlayer player) {
 		return player.getDisplayName().appendText(" [" + tag + "]");
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getTag() {
+		return tag;
+	}
+	
+	public String getDesc() {
+		return desc;
+	}
+	
+	public String getDiscord() {
+		return discord;
+	}
+	
+	public String getWiki() {
+		return wiki;
+	}
+	
+	public List<Member> getMembers() {
+		return members;
 	}
 }
