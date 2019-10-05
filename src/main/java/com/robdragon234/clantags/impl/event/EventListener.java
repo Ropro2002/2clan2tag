@@ -22,7 +22,7 @@ public class EventListener {
 			Member member = ClanTags.INSTANCE.getDatabaseManager().getMember(event.getEntity().getName());
 			if (event.getEntity() == Minecraft.getMinecraft().player) ClanTags.INSTANCE.setPlayer(member);
 			if (member != null) {
-				((EntityPlayer) event.getEntity()).addPrefix(new TextComponentString("[" + member.faction.tag + "]"));
+				((EntityPlayer) event.getEntity()).addPrefix(new TextComponentString("[" + member.faction.getTag() + "]"));
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class EventListener {
 			System.out.println(event.getMessage());
 			Member member = ClanTags.INSTANCE.getDatabaseManager().getMember(Minecraft.getMinecraft().player.getName());
 			if (member != null) {
-				Minecraft.getMinecraft().player.addPrefix(new TextComponentString(member.faction.tag));
+				Minecraft.getMinecraft().player.addPrefix(new TextComponentString(member.faction.getTag()));
 			}
 		}
 	}

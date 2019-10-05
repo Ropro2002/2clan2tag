@@ -58,7 +58,7 @@ public class Faction {
 	}
 	
 	public String getDiscord() {
-		return discord;
+		return "https://discord.gg/" + discord;
 	}
 	
 	public String getWiki() {

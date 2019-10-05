@@ -3,6 +3,7 @@ package com.robdragon234.clantags.impl.command;
 import com.robdragon234.clantags.ClanTags;
 import com.robdragon234.clantags.api.command.Command;
 import com.robdragon234.clantags.api.util.ChatUtil;
+import com.robdragon234.clantags.impl.managers.CommandManager;
 import com.robdragon234.clantags.impl.members.AdvancedMember;
 import com.robdragon234.clantags.impl.members.Member;
 
@@ -14,8 +15,8 @@ public class RankCommand extends Command {
 	
 	@Override
 	public void call(String[] args) {
-		if (args.length == 0) {
-			ChatUtil.error("No arguments found supposed to have 1");
+		if (args.length < 1) {
+			ChatUtil.error("Invalid usage. Expected " + ClanTags.INSTANCE.getCommandManager().getPrefix() + "rank [name]");
 			return;
 		}
 		Member member = ClanTags.INSTANCE.getDatabaseManager().getMember(args[0]);

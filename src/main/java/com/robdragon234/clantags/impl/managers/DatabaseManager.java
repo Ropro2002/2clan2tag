@@ -86,7 +86,7 @@ public class DatabaseManager {
 	public Faction getFactionById(String name) {
 		for (Database database : databases) {
 			for (Faction faction : database.factions) {
-				if (faction.id.equalsIgnoreCase(name)) return faction;
+				if (faction.getId().equalsIgnoreCase(name)) return faction;
 			}
 		}
 		return null;
@@ -98,13 +98,13 @@ public class DatabaseManager {
 			System.out.println(database.dbName);
 			System.out.println(database.dbFormat);
 			for (Faction faction : database.factions) {
-				System.out.println(faction.id);
-				System.out.println(faction.name);
-				System.out.println(faction.desc);
-				System.out.println(faction.discord);
-				System.out.println(faction.tag);
-				System.out.println(faction.wiki);
-				for (Member member : faction.members) {
+				System.out.println(faction.getId());
+				System.out.println(faction.getName());
+				System.out.println(faction.getDesc());
+				System.out.println(faction.getDiscord());
+				System.out.println(faction.getTag());
+				System.out.println(faction.getWiki());
+				for (Member member : faction.getMembers()) {
 					System.out.println(member.name);
 					System.out.println(member.aliases);
 				}

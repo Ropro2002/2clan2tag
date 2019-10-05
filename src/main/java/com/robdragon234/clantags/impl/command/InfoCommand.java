@@ -13,13 +13,20 @@ public class InfoCommand extends Command {
 	
 	@Override
 	public void call(String[] args) {
-		if (args.length == 0) {
-			ChatUtil.error("No arguments found supposed to have 1");
+		if (args.length < 1) {
+			ChatUtil.error("Invalid usage. Expected " + ClanTags.INSTANCE.getCommandManager().getPrefix() + "info [faction id]");
 			return;
 		}
-		Faction faction = ClanTags.INSTANCE.getDatabaseManager().getFactionById(args[0]);
+		
+		StringBuilder factionName = new StringBuilder();
+		
+		for(String arg : args){
+			factionName.append(arg).append(" ");
+		}
+		
+		Faction faction = ClanTags.INSTANCE.getDatabaseManager().getFactionById(factionName.toString().trim());
 		if (faction != null)
-			ChatUtil.message(faction.name + "\n" + faction.desc + "\n" + "Discord: https://discord.gg/" + faction.discord);
+			ChatUtil.message(faction.getName() + "\n" + faction.getDesc() + "\n" + faction.getDiscord());
 		
 	}
 }
