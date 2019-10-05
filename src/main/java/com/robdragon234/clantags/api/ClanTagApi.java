@@ -1,6 +1,5 @@
 package com.robdragon234.clantags.api;
 
-public class ClanTagApi
-{
+public class ClanTagApi {
 
 }
