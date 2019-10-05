@@ -20,9 +20,12 @@ public class EventListener {
 	public void onEntityAddedToWorld(EntityJoinWorldEvent event) {
 		if (event.getEntity() instanceof EntityPlayer) {
 			Member member = ClanTags.INSTANCE.getDatabaseManager().getMember(event.getEntity().getName());
+			
 			if (event.getEntity() == Minecraft.getMinecraft().player) ClanTags.INSTANCE.setPlayer(member);
+			
 			if (member != null) {
 				((EntityPlayer) event.getEntity()).addPrefix(new TextComponentString("[" + member.faction.getTag() + "]"));
+				
 			}
 		}
 	}
@@ -49,7 +52,7 @@ public class EventListener {
 			if (Configuration.muteOtherGroups && !ClanTags.INSTANCE.getPlayer().faction.equals(member.faction)) {
 				event.setCanceled(true);
 			} else {
-				event.getPlayer().addPrefix(new TextComponentString(member.faction.tag));
+				event.getPlayer().addPrefix(new TextComponentString(member.faction.getTag()));
 			}
 		} else {
 			if (Configuration.muteNoRank) event.setCanceled(true);

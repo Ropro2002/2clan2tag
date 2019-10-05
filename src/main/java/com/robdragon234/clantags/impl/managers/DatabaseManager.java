@@ -50,7 +50,7 @@ public class DatabaseManager {
 	}
 	
 	/**
-	 * Returns the {@link Member} that an {@link String} belongs to
+	 * Returns the {@link Member} that an {@link String} player belongs to
 	 *
 	 * @param name of the player
 	 * @return the faction the player belongs to
@@ -64,7 +64,7 @@ public class DatabaseManager {
 		}
 		for (Database database : databases) {
 			for (Faction faction : database.factions) {
-				for (Member member : faction.members) {
+				for (Member member : faction.getMembers()) {
 					if (member.name.equalsIgnoreCase(name)) return member;
 					for (String alias : member.aliases) {
 						if (alias.equalsIgnoreCase(name)) return member;
