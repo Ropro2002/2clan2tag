@@ -4,24 +4,21 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robdragon234.clantags.ClanTags;
-import com.robdragon234.clantags.impl.database.AdvancedDatabase;
 import com.robdragon234.clantags.impl.database.Database;
 import com.robdragon234.clantags.impl.factions.Faction;
 import com.robdragon234.clantags.impl.members.AdvancedMember;
+import com.robdragon234.clantags.impl.members.Member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdvancedDatabaseParser extends DatabaseParser
-{
-	AdvancedDatabaseParser(JsonObject jsonObject)
-	{
+public class AdvancedDatabaseParser extends DatabaseParser {
+	AdvancedDatabaseParser(JsonObject jsonObject) {
 		super(jsonObject);
 	}
 	
 	@Override
-	public Database parse()
-	{
+	public Database parse() {
 		String name = getAsString(jsonObject, "name");
 		
 		ClanTags.logger.info("Parsing database '" + name + "'");
@@ -34,8 +31,7 @@ public class AdvancedDatabaseParser extends DatabaseParser
 		
 		JsonArray factionsJson = jsonObject.get("factions").getAsJsonArray();
 		
-		for(JsonElement factionElement : factionsJson)
-		{
+		for (JsonElement factionElement : factionsJson) {
 			JsonObject factionObj = factionElement.getAsJsonObject();
 			
 			String id = getAsString(factionObj, "id");
@@ -45,12 +41,12 @@ public class AdvancedDatabaseParser extends DatabaseParser
 			String discord = getAsString(factionObj, "discord");
 			String wiki = getAsString(factionObj, "wiki");
 			
-			List<AdvancedMember> members = new ArrayList<>();
+			Faction faction = new Faction(id, factionName, tag, description, discord, wiki);
+			List<Member> members = new ArrayList<>();
 			
 			JsonArray membersJson = factionObj.get("members").getAsJsonArray();
 			
-			for(JsonElement memberElement : membersJson)
-			{
+			for (JsonElement memberElement : membersJson) {
 				JsonObject memberObj = memberElement.getAsJsonObject();
 				
 				String memberName = getAsString(memberObj, "name");
@@ -60,17 +56,16 @@ public class AdvancedDatabaseParser extends DatabaseParser
 				
 				JsonArray aliasesJson = memberObj.get("aliases").getAsJsonArray();
 				
-				for(JsonElement aliasElement : aliasesJson)
-				{
+				for (JsonElement aliasElement : aliasesJson) {
 					aliases.add(aliasElement.getAsString());
 				}
 				
-				members.add(new AdvancedMember(memberName, rank, aliases));
+				faction.addMember(new AdvancedMember(memberName, rank, aliases, faction));
 			}
 			
-			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
+			factions.add(faction);
 		}
 		
-		return new AdvancedDatabase(name, dbFormat, author, lastUpdated, factions);
+		return new Database(name, dbFormat, author, lastUpdated, factions);
 	}
 }

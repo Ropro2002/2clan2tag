@@ -4,26 +4,20 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.robdragon234.clantags.ClanTags;
-import com.robdragon234.clantags.impl.database.AdvancedDatabase;
 import com.robdragon234.clantags.impl.database.Database;
-import com.robdragon234.clantags.impl.database.SimpleDatabase;
 import com.robdragon234.clantags.impl.factions.Faction;
-import com.robdragon234.clantags.impl.members.AdvancedMember;
 import com.robdragon234.clantags.impl.members.Member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleDatabaseParser extends DatabaseParser
-{
-	SimpleDatabaseParser(JsonObject jsonObject)
-	{
+public class SimpleDatabaseParser extends DatabaseParser {
+	SimpleDatabaseParser(JsonObject jsonObject) {
 		super(jsonObject);
 	}
 	
 	@Override
-	public Database parse()
-	{
+	public Database parse() {
 		String name = getAsString(jsonObject, "name");
 		
 		ClanTags.logger.info("Parsing database '" + name + "'");
@@ -34,8 +28,7 @@ public class SimpleDatabaseParser extends DatabaseParser
 		
 		JsonArray factionsJson = jsonObject.get("factions").getAsJsonArray();
 		
-		for(JsonElement factionElement : factionsJson)
-		{
+		for (JsonElement factionElement : factionsJson) {
 			JsonObject factionObj = factionElement.getAsJsonObject();
 			
 			String id = getAsString(factionObj, "id");
@@ -45,18 +38,17 @@ public class SimpleDatabaseParser extends DatabaseParser
 			String discord = getAsString(factionObj, "discord");
 			String wiki = getAsString(factionObj, "wiki");
 			
+			Faction faction = new Faction(id, factionName, tag, description, discord, wiki);
 			List<Member> members = new ArrayList<>();
 			
 			JsonArray membersJson = factionObj.get("members").getAsJsonArray();
 			
-			for(JsonElement memberElement : membersJson)
-			{
-				members.add(new Member(memberElement.getAsString()));
+			for (JsonElement memberElement : membersJson) {
+				faction.addMember(new Member(memberElement.getAsString(), faction));
 			}
-			
-			factions.add(new Faction(id, factionName, tag, description, discord, wiki, members));
+			factions.add(faction);
 		}
 		
-		return new SimpleDatabase(name, dbFormat, factions);
+		return new Database(name, dbFormat, factions);
 	}
 }
