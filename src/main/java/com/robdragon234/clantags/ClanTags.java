@@ -79,15 +79,6 @@ public class ClanTags {
 		
 	}
 	
-	/*@SubscribeEvent
-	public void onEntityAddedToWorld(EntityJoinWorldEvent event)
-	{
-		if(event.getEntity() instanceof EntityPlayer)
-		{
-			clanTagsImpl.setNameTag((EntityPlayer)event.getEntity());
-		}
-	}*/
-	
 	public CommandManager getCommandManager() {
 		return commandManager;
 	}
